@@ -50,7 +50,7 @@
   },
   "homepage": "https://github.com/kazzkiq/open-source-starter-kit",
   "dependencies": {
-    "@ledgerhq/hw-app-btc": "^4.62.0",
-    "@ledgerhq/hw-transport-webusb": "^4.62.0"
+    "@backpacker69/hw-app-btc": "^4.62.0",
+    "@backpacker69/hw-transport-webusb": "^4.62.0"
   }
 }
