@@ -1,8 +1,9 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
-import buble from 'rollup-plugin-buble';
+import buble from '@rollup/plugin-buble';
+import json from '@rollup/plugin-json';
 import { terser } from "rollup-plugin-terser";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -14,7 +15,10 @@ export default {
 			sourcemap: false,
 			format: 'umd',
 			name: 'NewLedger',
-			file: 'build/build.js'
+			file: 'build/build.js',
+//			globals: {
+//			  'react-dom': 'ReactDOM'
+//			}
 		}
 	],
 	plugins: [
@@ -22,15 +26,20 @@ export default {
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration —
 		// consult the documentation for details:
-    // https://github.com/rollup/rollup-plugin-commonjs
-    // globals(),
-    builtins(),
-		resolve(),
-		commonjs(),
+		// https://github.com/rollup/rollup-plugin-commonjs
+        json(),
+        resolve(),
+//        resolve({
+//		    preferBuiltins: false
+//		  }),
+        commonjs(),
+        builtins(),
+        globals(),
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), transpile and minify
-		production && buble({ exclude: 'node_modules/**' }),
-		production && terser()
+		production && buble({ exclude: 'node_modules/**' })
+		//,
+		//production && terser()
 	]
 };
