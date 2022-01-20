@@ -16,9 +16,6 @@ export default {
 			format: 'umd',
 			name: 'NewLedger',
 			file: 'build/build.js',
-//			globals: {
-//			  'react-dom': 'ReactDOM'
-//			}
 		}
 	],
 	plugins: [
@@ -28,10 +25,10 @@ export default {
 		// consult the documentation for details:
 		// https://github.com/rollup/rollup-plugin-commonjs
         json(),
-        resolve(),
-//        resolve({
-//		    preferBuiltins: false
-//		  }),
+		resolve({
+		  browser: true,
+		  preferBuiltins: false
+		  }),
         commonjs(),
         builtins(),
         globals(),
